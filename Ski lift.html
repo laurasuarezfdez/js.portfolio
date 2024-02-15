@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ski Lift Tickets</title>
+</head>
+<body>
+    <h1>Ski Lift Tickets</h1>
+   
+    <form id="liftTicketForm">
+        <label for="ticketType">Select your ticket type:</label>
+        <select id="ticketType" name="ticketType">
+            <option value="morning">Morning (Before noon) - $20</option>
+            <option value="afternoon">Afternoon (From noon to 6pm) - $25</option>
+            <option value="night">Night Skiing - $15</option>
+        </select>
+        <br><br>
+       
+        <label for="residency">Are you a California resident?</label>
+        <input type="radio" id="california" name="residency" value="california"> Yes
+        <input type="radio" id="outOfState" name="residency" value="outOfState"> No
+        <br><br>
+       
+        <button type="button" onclick="calculateCost()">Calculate Cost</button>
+    </form>
+   
+    <p id="cost"></p>
+
+    <script>
+        function calculateCost() {
+            const ticketType = document.getElementById('ticketType').value;
+            const residency = document.querySelector('input[name="residency"]:checked').value;
+           
+            let ticketCost = 0;
+            if (ticketType === 'morning') {
+                ticketCost = 20;
+            } else if (ticketType === 'afternoon') {
+                ticketCost = 25;
+            } else if (ticketType === 'night') {
+                ticketCost = 15;
+            }
+           
+            let taxRate = 0;
+            if (residency === 'california') {
+                taxRate = 0.06;
+            } else if (residency === 'outOfState') {
+                taxRate = 0.08;
+            }
+           
+            const totalCost = ticketCost + (ticketCost * taxRate);
+            const finalTotalCost = totalCost.toFixed(2);
+           
+            const cost = document.getElementById('cost');
+            cost.textContent = `Total Cost: ${finalTotalCost}`;
+        }
+    </script>
+</body>
+</html>

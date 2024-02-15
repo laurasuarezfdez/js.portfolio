@@ -1,0 +1,107 @@
+<!doctype html>
+<head>
+	<title>Validate me</title>
+</head>
+<body>
+At least one piece of data has to come in from every input type.
+	<form action="form.html" method="get" ><br>
+
+		<div>
+			Name:
+			<input type="text" id="name" name="fullname" placeholder="Enter Full Name"><br>
+			<span id="fullname_error"></span><br>
+		</div>
+
+		<div>
+			Year in School:<br>
+				First<input type="radio" name="year" value="First">
+				Second<input type="radio" name="year" value="Second">
+				Third<input type="radio" name="year" value="Third">
+				<span id="year_error"></span><br>
+		</div>
+
+		<div>
+			Sports that you like:<br>
+				Baseball <input type="checkbox" title="hobbies" name="hobbies" value="baseball">  
+				Basketball <input type="checkbox" title="hobbies" name="hobbies" value="basketball">  
+				Football <input type="checkbox" title="hobbies" name="hobbies" value="football">  
+				Hockey <input type="checkbox" title="hobbies" name="hobbies" value="hockey"><br>
+				<span id="hobbies_error"></span><br>
+		</div>
+
+		<div> 
+			Simpsons, Family Guy or South Park<br><select id="show" name="show">
+				<option value="">Choose Below</option>
+				<option value="Family Guy">Family Guy</option>
+				<option value="Simpsons">Simpsons</option>
+				<option value="South Park">South Park</option>
+			</select><br>
+			<span id="show_error"></span><br>
+		</div>
+
+		<div>
+			Comments<br>
+			<textarea cols="50" rows="6" name="comments" id="comments" placeholder="Enter Comments" tabindex="4" value=''></textarea><br>
+			<span id="comments_error"></span><br>
+		</div>
+
+			<input type="submit" name="submit" value="Enter me" onclick="return validateForm()">
+
+	</form>
+
+
+<script>
+    function validateForm() {
+      const form = document.querySelector('form');
+      let isValid = true;
+
+      const nameInput = form.elements.fullname;
+      if (!nameInput.value.trim()) {
+        nameInput.style.border = '1px solid red';
+        isValid = false;
+      }
+
+      const yearInputs = form.elements.year;
+      let yearChecked = false;
+      for (let i = 0; i < yearInputs.length; i++) {
+        if (yearInputs[i].checked) {
+          yearChecked = true;
+          break;
+        }
+      }
+      if (!yearChecked) {
+        yearInputs[0].style.outline = '1px solid red';
+        isValid = false;
+      }
+
+      const hobbyInputs = form.elements.hobbies;
+      let hobbyChecked = false;
+      for (let i = 0; i < hobbyInputs.length; i++) {
+        if (hobbyInputs[i].checked) {
+          hobbyChecked = true;
+          break;
+        }
+      }
+      if (!hobbyChecked) {
+        hobbyInputs[0].style.outline = '1px solid red';
+        isValid = false;
+      }
+
+      const showSelect = form.elements.show;
+      if (!showSelect.value) {
+        showSelect.style.outline = '1px solid red';
+        isValid = false;
+      }
+
+      const commentsInput = form.elements.comments;
+      if (!commentsInput.value.trim()) {
+        commentsInput.style.border = '1px solid red';
+        isValid = false;
+      }
+
+      return isValid;
+    }
+  </script>
+
+</body>
+</html>

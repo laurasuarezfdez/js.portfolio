@@ -1,0 +1,65 @@
+<html>
+<head>
+<script language="JavaScript">
+const size = 10;
+const style = `
+  <style>
+    table {
+      border-collapse: collapse;
+      margin: auto;
+    }
+    td, th {
+      border: 1px solid #bbb;
+      padding: 0.5rem;
+      text-align: center;
+    }
+    .heading-top {
+      color: blue;
+    }
+    .heading-left {
+      color: red;
+    }
+    .squares {
+      color: green;
+      font-weight: 600;
+    }
+    .symbol {
+      color: red;
+      font-weight: 400;
+    }
+  </style>
+`;
+
+document.write(style);
+
+document.write('<table>');
+document.write('<tr>');
+
+document.write('<th class="symbol">X</th>');
+
+for (let i = 1; i <= size; i++) {
+  document.write(`<th class="heading-top">${i}</th>`);
+}
+document.write('</tr>');
+
+for (let i = 1; i <= size; i++) {
+  document.write('<tr>');
+
+  document.write(`<th class="heading-left">${i}</th>`);
+
+  for (let j = 1; j <= size; j++) {
+
+    const className = i === j ? 'squares' : '';
+    document.write(`<td class="${className}">${i * j}</td>`);
+  }
+
+  document.write('</tr>');
+}
+
+document.write('</table>');
+</script>
+<head> 
+<body>
+
+  </body>
+  </html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Weather App</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f8ff; 
+        color: #333; 
+        text-align: center; 
+        padding: 20px; 
+    }
+
+    #weather {
+        background-color: #fff; 
+        margin: auto;
+        width: 80%;
+        max-width: 600px;
+        padding: 20px;
+        border-radius: 10px; 
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); 
+    }
+
+    h2 {
+        color: #007bff; 
+    }
+
+    p {
+        font-size: 16px;
+        line-height: 1.6; 
+    }
+
+    strong {
+        color: #0056b3; 
+    }
+</style>
+</head>
+<body>
+    <div id="weather"></div>
+
+    <script>
+        
+document.addEventListener('DOMContentLoaded', function() {
+    var url = 'http://mm214.com/demo.php';
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        displayWeather(data);
+    })
+    .catch(error => console.error('Error:', error));
+});
+
+function displayWeather(data) {
+    var description = data.weather[0].description;
+    var temp = data.main.temp;
+
+    var weatherDiv = document.getElementById('weather');
+    weatherDiv.innerHTML = `<h2>Weather in ${data.name}</h2>
+                            <p><strong>Description:</strong> ${description}</p>
+                            <p><strong>Temperature:</strong> ${temp} °F</p>`;
+}
+
+    </script>
+</body>
+</html>
